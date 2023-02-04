@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Circle Counter</title>
+    <style>
+      /* CSS for the circles */
+      .circle{
+    width: 50px;
+    height: 50px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  }
+  .sets{
+    border-radius: 50%;
+    background-color: blue;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+  }
+
+  .setControls {
+        border-radius: 50%;
+        background-color: rgb(0, 0, 0);
+        display: inline-block;
+        margin-right: 10px;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+
+      }
+
+</style>
+</head>
+<body>
+  <button id="create-container-button">Create Container</button>
+</body>
+<script>
+// JavaScript for adding circles and counting clicks
+var createContainerButton = document.getElementById("create-container-button");
+createContainerButton.addEventListener("click", function() {
+var newContainer = document.createElement("div");
+var newAddButton = document.createElement("div");
+newAddButton.classList.add("setControls", "circle");
+newAddButton.innerHTML = "+";
+var newRemoveButton = document.createElement("div");
+//have the class be "setControls circle"
+newRemoveButton.classList.add("setControls", "circle");
+newRemoveButton.innerHTML = "-";
+newContainer.appendChild(newAddButton);
+newContainer.appendChild(newRemoveButton);
+document.body.appendChild(newContainer);
+newAddButton.addEventListener("click", function() {
+  var circle = document.createElement("div");
+  circle.classList.add("sets", "circle");
+  var counter = 0;
+  circle.innerHTML = counter;
+  circle.addEventListener("click", function() {
+    counter++;
+    circle.innerHTML = counter;
+  });
+  newContainer.appendChild(circle);
+});
+
+newRemoveButton.addEventListener("click", function() {
+  var circles = document.getElementsByClassName("sets circle");
+  if (circles.length > 0) {
+    newContainer.removeChild(circles[circles.length - 1]);
+  }
+});
+});
+</script>
+
+</html>
